@@ -30,11 +30,7 @@ node tools/serve.mjs        # http://localhost:8123
 (Any static file server works; ES modules just need http(s), not `file://`.)
 
 ## Deploy to GitHub Pages
-1. Push this folder to a GitHub repo (branch `main`).
-2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-3. The included workflow (`.github/workflows/pages.yml`) validates the puzzle bundle and publishes the site.
-
-All asset paths are relative, so it works from `https://<user>.github.io/<repo>/`.
+Push to a public repo, then **Settings → Pages → Deploy from a branch → `main` / root**. All asset paths are relative, so it works from `https://<user>.github.io/<repo>/`.
 
 ## How it works
 - `js/board.js` – DOM board with spring-follow drag, click-to-move, arcing slides, squash & stretch,
