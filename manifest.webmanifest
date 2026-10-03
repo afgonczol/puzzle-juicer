@@ -1,6 +1,6 @@
 {
-  "name": "Puzzle Juicer",
-  "short_name": "Juicer",
+  "name": "Chess Puzzle Juicer",
+  "short_name": "Chess Juicer",
   "description": "Candy-coated chess puzzles. Squeeze every tactic!",
   "start_url": "./",
   "scope": "./",

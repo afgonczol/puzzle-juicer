@@ -71,7 +71,7 @@ class FX {
     if (this.running) return;
     this.running = true;
     this.last = performance.now();
-    requestAnimationFrame((t) => this._frame(t));
+    requestAnimationFrame((t) => this._safe(t));
   }
 
   // --- emitters ------------------------------------------------------------
@@ -292,6 +292,17 @@ class FX {
   }
 
   // --- main loop -------------------------------------------------------------
+  /** A thrown error must never freeze the canvas with leftover particles. */
+  _safe(t) {
+    try { this._frame(t); } catch (e) {
+      console.warn('fx frame failed', e);
+      this.parts = []; this.flashA = 0; this.trauma = 0; this.running = false;
+      this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.globalAlpha = 1; this.ctx.globalCompositeOperation = 'source-over';
+      if (this.shakeEl) this.shakeEl.style.transform = '';
+    }
+  }
   _frame(now) {
     const ctx = this.ctx;
     let dt = Math.min(0.05, (now - this.last) / 1000);
@@ -309,7 +320,7 @@ class FX {
     const keep = [];
     for (const p of this.parts) {
       p.age += dt;
-      if (p.age >= p.life) continue;
+      if (!(p.age < p.life) || !Number.isFinite(p.x + p.y)) continue;
       const k = p.age / p.life, a = 1 - k;
       if (p.vx !== undefined) {
         const damp = Math.exp(-p.drag * dt);
@@ -408,7 +419,7 @@ class FX {
       this.trauma = 0;
     }
 
-    if (this.parts.length || this.flashA > 0 || this.trauma > 0) requestAnimationFrame((t) => this._frame(t));
+    if (this.parts.length || this.flashA > 0 || this.trauma > 0) requestAnimationFrame((t) => this._safe(t));
     else { this.running = false; ctx.clearRect(0, 0, this.w, this.h); }
   }
 }

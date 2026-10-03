@@ -1,4 +1,4 @@
-# 🍊 Puzzle Juicer
+# 🍊 Chess Puzzle Juicer
 
 **Candy-coated chess puzzles.** A static, zero-build web game that serves ~12,000 hand-sampled
 [Lichess puzzles](https://database.lichess.org/#puzzles) wrapped in an absurd amount of juice:

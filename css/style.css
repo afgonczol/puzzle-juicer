@@ -159,6 +159,7 @@ a { color: var(--cyan); }
 .logo { text-align: center; line-height: 0.95; margin: 0; font-size: clamp(46px, 13vw, 92px); font-weight: 700; position: relative; }
 .logo .l { display: inline-block; animation: logo-bounce 2.4s ease-in-out infinite; animation-delay: calc(var(--i) * 0.07s); }
 .logo .l:nth-child(3n) { color: var(--yellow); } .logo .l:nth-child(3n+1) { color: #fff; } .logo .l:nth-child(3n+2) { color: #ffb4dc; }
+.logo .kicker { display: block; font-size: 0.32em; letter-spacing: 0.35em; color: var(--yellow); -webkit-text-stroke: 4px var(--ink); margin-bottom: 4px; }
 .logo .row2 { display: block; font-size: 0.8em; }
 @keyframes logo-bounce { 0%, 60%, 100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(-9px) rotate(-3deg); } 40% { transform: translateY(2px) scale(1.06, 0.94); } }
 .tagline { text-align: center; margin: 6px 0 0; color: var(--muted); font-size: 18px; font-weight: 500; }

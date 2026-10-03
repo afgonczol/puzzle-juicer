@@ -39,7 +39,7 @@ export function homeScreen() {
           <span class="row1">${[...'Puzzle'].map((c, i) => `<span class="l" style="--i:${i}">${c}</span>`).join('')}</span>
           <span class="row2">${[...'Juicer'].map((c, i) => `<span class="l" style="--i:${i + 6}">${c}</span>`).join('')}</span>
         </h1>
-        <p class="tagline">Squeeze every tactic. Powered by Lichess puzzles.</p>
+        <p class="tagline">Chess puzzles, freshly squeezed. Powered by Lichess.</p>
         <div class="hero-mascot"></div>
       </div>
       <div class="mode-grid">
