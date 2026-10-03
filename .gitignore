@@ -1,0 +1,5 @@
+node_modules/
+*.zst
+*.csv
+.claude/
+.DS_Store

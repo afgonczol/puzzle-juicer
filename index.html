@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Puzzle Juicer — juicy chess puzzles</title>
+  <meta name="description" content="Squeeze every tactic! A candy-coated chess puzzle game with thousands of Lichess puzzles, an adventure map, Rush, Survival, daily puzzles, and a ridiculous amount of juice.">
+  <meta name="theme-color" content="#2f1070">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta property="og:title" content="Puzzle Juicer">
+  <meta property="og:description" content="Candy-coated chess puzzles. Squeeze every tactic!">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preload" href="assets/fonts/fredoka-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+  <main id="app"></main>
+  <div id="vignette"></div>
+  <canvas id="fx"></canvas>
+  <div id="fx-text"></div>
+  <div id="toasts"></div>
+  <div id="splash">
+    <div class="splash-inner">
+      <div id="splash-mascot" style="display:flex;justify-content:center"></div>
+      <div class="logo-word stroke">Puzzle<br>Juicer</div>
+      <div class="loadbar" id="loadbar"><i></i></div>
+      <button class="btn green big pulse shine" id="startbtn" hidden style="margin-top:22px">▶ Play</button>
+      <p id="loaderr" style="color:#ff9ab0;max-width:340px;margin:16px auto 0" hidden></p>
+    </div>
+  </div>
+  <noscript><p style="position:fixed;inset:0;display:grid;place-items:center;color:#fff;background:#170733">Puzzle Juicer needs JavaScript. Sorry!</p></noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
