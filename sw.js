@@ -1,5 +1,5 @@
 // Offline-capable service worker: precache the shell, network-first for code, cache-first for big assets.
-const VERSION = 'pj-v3';
+const VERSION = 'pj-v4';
 const SHELL = [
   './', 'index.html', 'css/style.css', 'manifest.webmanifest', 'icons/icon.svg',
   'assets/fonts/fredoka-latin.woff2', 'data/puzzles.json',

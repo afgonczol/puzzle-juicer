@@ -510,3 +510,26 @@ textarea.save-box { width: 100%; height: 90px; border-radius: 14px; border: 0; b
   .blob, .bubble, .logo .l, .mode-card .ic, .node.todo, .btn.shine::before { animation: none !important; }
 }
 .reduce-motion .blob, .reduce-motion .bubble, .reduce-motion .logo .l, .reduce-motion .mode-card .ic, .reduce-motion .node.todo, .reduce-motion .btn.shine::before { animation: none !important; }
+
+/* ---------- results card: always keep the buttons reachable ---------- */
+.modal.result .modal-actions { position: sticky; bottom: -20px; margin: 10px -20px -20px; padding: 12px 20px 16px; background: linear-gradient(transparent, #2b1266 35%); z-index: 3; }
+.modal.result .modal-actions .btn.big { font-size: 22px; padding: 14px 30px; }
+.modal.result .btn small { font-size: 15px; opacity: .85; background: rgba(0,0,0,.25); border-radius: 10px; padding: 1px 8px; }
+.auto-chip { display: block; margin: 2px auto 0; border: 0; border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 600; background: rgba(0,0,0,.28); }
+.auto-chip.on { background: linear-gradient(#7dffa8, #1fcf6b); color: #053; }
+@media (max-height: 860px) {
+  .modal.result { padding: 14px 16px 16px; }
+  .modal.result .res-mascot .mascot-body, .modal.result .res-mascot svg { width: 64px !important; height: 64px !important; }
+  .res-title { font-size: 32px; }
+  .star-row { height: 76px; margin: 2px 0; }
+  .star-slot { width: 58px; height: 58px; }
+  .star-slot:nth-child(2) { width: 74px; height: 74px; }
+  .res-stats { grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 6px 0; }
+  .res-stat { padding: 6px 2px; }
+  .res-stat .v { font-size: 20px; }
+  .res-stat .l { font-size: 10px; letter-spacing: 0.5px; }
+  .modal.result .sub { margin: 0 0 4px; font-size: 14px; }
+  .res-note { font-size: 13px; }
+  .modal.result .theme-chip { font-size: 12px; padding: 3px 8px; }
+  .modal.result .modal-actions { margin-top: 6px; bottom: -16px; margin-left: -16px; margin-right: -16px; padding: 10px 16px 12px; }
+}

@@ -48,6 +48,7 @@ export function openSettings() {
       <div class="card set-group">
         ${row('Show legal moves', '', sw('legal'))}
         ${row('Board coordinates', '', sw('coords'))}
+        ${row('Auto-next', 'Jump to the next puzzle/level after a 3-second countdown', sw('autoNext'))}
         ${row('Idle nudge', 'Piece wiggles if you pause too long', sw('idleNudge'))}
         ${row('Fetch Daily from Lichess', 'Falls back to a bundled puzzle offline', sw('online'))}
       </div>

@@ -2,6 +2,7 @@
 import { audio } from './audio.js';
 import { fx } from './fx.js';
 import { openModal } from './ui.js';
+import { store, settings } from './store.js';
 import { xpState, BOARDS, PIECE_SETS } from './store.js';
 import { Mascot } from './mascot.js';
 import { displayThemes, themeInfo } from './themes.js';
@@ -41,11 +42,34 @@ export async function resultModal(o) {
     ${o.note ? `<p class="res-note">${o.note}</p>` : ''}
     ${o.themes?.length ? `<div class="pz-themes">${chipsFor(o.themes)}</div>` : ''}
     <div class="modal-actions">${(o.buttons || []).map((b) => `<button class="btn ${b.cls || ''}" data-r="${b.r}">${b.label}</button>`).join('')}</div>`;
-  const m = openModal(html, { dismissible: false, cls: 'result' });
+  const m = openModal(html + (o.auto ? `<button class="auto-chip ${settings().autoNext ? 'on' : ''}" type="button">⏩ Auto-next: <b>${settings().autoNext ? 'ON' : 'OFF'}</b></button>` : ''), { dismissible: false, cls: 'result' });
   const root = m.el;
   const mascot = new Mascot(root.querySelector('.res-mascot'), { size: o.win ? 92 : 80, bubble: false });
   mascot.set(o.win ? (stars === 3 ? 'cheer' : 'happy') : 'sad');
   root.querySelector('.res-mascot').style.cssText = 'display:flex;justify-content:center;margin-bottom:2px';
+
+  if (o.auto) {
+    const chip = root.querySelector('.auto-chip'), btn = root.querySelector(`[data-r="${o.auto}"]`);
+    const label = btn.innerHTML;
+    let timer = null;
+    const stop = () => { clearInterval(timer); timer = null; btn.innerHTML = label; };
+    const start = () => {
+      let n = 3;
+      btn.innerHTML = `${label} <small>${n}</small>`;
+      timer = setInterval(() => {
+        n--;
+        if (n <= 0) { stop(); btn.click(); } else btn.innerHTML = `${label} <small>${n}</small>`;
+      }, 1000);
+    };
+    chip.addEventListener('click', () => {
+      settings().autoNext = !settings().autoNext; store.save();
+      chip.classList.toggle('on', settings().autoNext);
+      chip.querySelector('b').textContent = settings().autoNext ? 'ON' : 'OFF';
+      settings().autoNext ? start() : stop();
+    });
+    root.addEventListener('pointerdown', (e) => { if (timer && e.target !== chip && !chip.contains(e.target) && !btn.contains(e.target)) stop(); });
+    if (settings().autoNext) setTimeout(() => { if (root.isConnected && !timer) start(); }, 2600);
+  }
 
   (async () => {
     const rect = () => root.getBoundingClientRect();

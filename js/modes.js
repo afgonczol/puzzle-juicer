@@ -63,6 +63,7 @@ export function adventureMode(n) {
         note: win ? (stars === 3 ? 'Flawless — no mistakes, no hints!' : stars === 2 ? 'No mistakes! Skip the hints for a third star.' : 'Solved! Go mistake-free for more stars.') : 'Study the solution, then give it another go.',
         themes: res.puzzle.themes,
         buttons,
+        auto: win && n < TOTAL_LEVELS ? 'next' : null,
       });
       if (!play.alive) return;
       if (act === 'next') playMode(adventureMode(n + 1));
@@ -266,6 +267,7 @@ export function trainingMode({ themes = null, offset = 0, label = null } = {}) {
         note: clean ? 'Clean solve — no mistakes, no hints.' : res.solved ? 'Solved with a few bumps. Clean solves earn more!' : 'It happens. The puzzle is saved to Review.',
         themes: res.puzzle.themes,
         buttons: [{ r: 'menu', label: '🏠 Menu', cls: 'gray' }, { r: 'next', label: 'Next ▶', cls: 'green big pulse shine' }],
+        auto: 'next',
       });
       if (!play.alive) return;
       if (act === 'next') await play.next(); else go('home', {}, { dir: 'back' });
